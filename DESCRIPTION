@@ -1,0 +1,20 @@
+Package: traitdata
+Type: Package
+Title: Easy access to various ecological trait data
+Version: 0.0.1
+Date: 2021-04-22
+Authors@R: 
+    person("RS-eco", email = "RS-eco@posteo.de", role = c("cre", "aut"))
+Author: RS-eco [aut, cre]
+Maintainer: RS-eco <RS-eco@posteo.de>
+Description: An easy way to access 14 different trait datasets covering amphibian, bird, insect, mammal, reptile and spider species.
+Depends: R (>= 4.0)
+Suggests: knitr, rmarkdown, ggplot2, dplyr, taxize, raster, tidyr
+Imports: utils
+License: MIT + file LICENSE
+LazyData: TRUE
+VignetteBuilder: knitr
+RoxygenNote: 7.1.1
+NeedsCompilation: no
+URL: https://github.com/RS-eco/traitdata
+BugReports: https://github.com/RS-eco/traitdata/issues

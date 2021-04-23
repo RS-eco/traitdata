@@ -1,0 +1,7 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+README.Rmd
+^data-raw$
+vignettes/morpho-indices.Rmd
+sr_islands.csv
+island_birds.csv

@@ -1,0 +1,60 @@
+---
+title: "Morphological indices"
+author: "RS-eco"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Morphological indices}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Morphological indices
+
+Morphological indices can be helpful to depict ecological differences between feeding guilds and between species differing in their preferred foraging stratum. 
+
+There are 6 morphological indices, which are often calculated:
+
+* Kipp’s index (Kipp’s distance divided by wing length), 
+* tail-wing index (the longest rectrix divided by wing length), 
+* bill height index (bill height divided by bill length), 
+* bill width index (bill width divided by bill length), 
+* lateral tarsus index (lateral tarsus diameter divided by tarsus length) and 
+* sagittal tarsus index (sagittal tarsus diameter divided by tarsus length).
+
+Here, we show how to calculate these indices, using the data included in this package:
+
+```{r}
+#' First we load our Data
+library(traitdata)
+data(passerines)
+
+#' Secondly, we need to load the dplyr library
+library(dplyr)
+
+#' Now, we can calculate the indices using the mutate function from the dplyr package
+#mutate(KippData, kipp_index = kipp / Wing)
+#mutate(KippData, tail-wing_index = tail / Wing)
+#mutate(KippData, bill_height_index = billheight/ billlength)
+#mutate(KippData, bill_width_index = billwidth / billlength)
+#mutate(KippData, lateral_tarsus_index = lateral.tarsus.diameter / tarsus.length)
+#mutate(KippData, sagittal_tarsus_index = sagittal.tarsus.diamter / tarsus.length)
+```
+
+Now, we want to plot these indices:
+
+```{r}
+#' Load the ggplot2 library
+library(ggplot2)
+
+#' Plot a histogram of the 6 indices
+
+```
+
