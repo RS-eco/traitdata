@@ -19,7 +19,7 @@ remotes::install_github("RS-eco/traitdata", build_vignettes = T, force=T)
 
 After installation, simply load the `traitdata` package:
 
-```{r, message=FALSE}
+```{r, eval=F}
 library(traitdata)
 ```
 
