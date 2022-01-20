@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="RS-eco" />
+
+<meta name="date" content="2022-01-20" />
+
+<title>Introduction to traitdata</title>
+
+<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Introduction to traitdata</h1>
+<h4 class="author">RS-eco</h4>
+<h4 class="date">2022-01-20</h4>
+
+
+
+<div id="taxonomy" class="section level2">
+<h2>Taxonomy</h2>
+</div>
+<div id="datasets" class="section level2">
+<h2>Datasets</h2>
+<p>There are 32 different datasets, which are currently included in this package:</p>
+<table>
+<colgroup>
+<col width="9%" />
+<col width="8%" />
+<col width="15%" />
+<col width="66%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">amniota</th>
+<th align="left">traitDatabase</th>
+<th align="left">Myrhvold et al. 2016</th>
+<th align="left"><a href="http://doi.org/10.1890/15-0846R.1">10.1890/15-0846R.1</a></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">amphi_lifehist</td>
+<td align="left">traitDatabase</td>
+<td align="left">Trochet et al. 2014</td>
+<td align="left"><a href="http://doi.org/10.3897/BDJ.2.e4123">10.3897/BDJ.2.e4123</a></td>
+</tr>
+<tr class="even">
+<td align="left">amphibio</td>
+<td align="left">traitDatabase</td>
+<td align="left">Oliveira et al. 2017</td>
+<td align="left"><a href="http://doi.org/10.1038/sdata.2017.123">10.1038/sdata.2017.123</a></td>
+</tr>
+<tr class="odd">
+<td align="left">an_age</td>
+<td align="left">traitDatabase</td>
+<td align="left">Tacutu et al. 2018</td>
+<td align="left"><a href="http://doi.org/10.1093/nar/gkx1042">10.1093/nar/gkx1042</a></td>
+</tr>
+<tr class="even">
+<td align="left">anuran_morpho</td>
+<td align="left">traitDatabase</td>
+<td align="left">Mendoza-Henao et al. 2019</td>
+<td align="left"><a href="http://doi.org/10.1002/ecy.2685">10.1002/ecy.2685</a></td>
+</tr>
+<tr class="odd">
+<td align="left">arthropods</td>
+<td align="left">traitDatabase</td>
+<td align="left">Gossner et al. 2015</td>
+<td align="left"><a href="http://doi.org/10.1038/sdata.2015.13">10.1038/sdata.2015.13</a></td>
+</tr>
+<tr class="even">
+<td align="left">atlantic_birds</td>
+<td align="left">traitDatabase</td>
+<td align="left">Rodrigues et al. 2019</td>
+<td align="left"><a href="https://doi.org/10.1002/ecy.2647">10.1002/ecy.2647</a></td>
+</tr>
+<tr class="odd">
+<td align="left">australian_birds</td>
+<td align="left">traitDatabase</td>
+<td align="left">Garnett et al. 2015</td>
+<td align="left"><a href="https://doi.org/10.1038/sdata.2015.61">10.1038/sdata.2015.61</a></td>
+</tr>
+<tr class="even">
+<td align="left">AvianBodySize</td>
+<td align="left">traitDatabase</td>
+<td align="left">Lislevand et al. 2007</td>
+<td align="left"><a href="https://doi.org/10.1890/06-2054">10.1890/06-2054</a></td>
+</tr>
+<tr class="odd">
+<td align="left">bird_behav</td>
+<td align="left">traitDatabase</td>
+<td align="left">Tobias &amp; Pigot 2019</td>
+<td align="left"><a href="http://dx.doi.org/10.1098/rstb.2019.0012">10.1098/rstb.2019.0012</a></td>
+</tr>
+<tr class="even">
+<td align="left">carabids</td>
+<td align="left">traitDatabase</td>
+<td align="left">van der Plas et al. 2017</td>
+<td align="left"><a href="http://doi.org/10.5061/dryad.53ds2">10.5061/dryad.53ds2</a></td>
+</tr>
+<tr class="odd">
+<td align="left">climber</td>
+<td align="left">traitDatabase</td>
+<td align="left">Schweiger et al. 2014</td>
+<td align="left"><a href="http://doi.org/10.3897/zookeys.367.6185">10.3897/zookeys.367.6185</a></td>
+</tr>
+<tr class="even">
+<td align="left">disperse</td>
+<td align="left">traitDatabase</td>
+<td align="left">Sarremejane et al. 2020</td>
+<td align="left"><a href="http://doi.org/10.1038/s41597-020-00732-7">10.1038/s41597-020-00732-7</a></td>
+</tr>
+<tr class="odd">
+<td align="left">elton_birds</td>
+<td align="left">traitDatabase</td>
+<td align="left">Wilman et al. 2014</td>
+<td align="left"><a href="http://doi.org/10.1890/13-1917.1">10.1890/13-1917.1</a></td>
+</tr>
+<tr class="even">
+<td align="left">elton_mammals</td>
+<td align="left">traitDatabase</td>
+<td align="left">Wilman et al. 2014</td>
+<td align="left"><a href="http://doi.org/10.1890/13-1917.1">10.1890/13-1917.1</a></td>
+</tr>
+<tr class="odd">
+<td align="left">epiphytes</td>
+<td align="left">traitDatabase</td>
+<td align="left">Hietz et al. 2021</td>
+<td align="left"><a href="https://doi.org/10.1111/1365-2745.13802">10.1111/1365-2745.13802</a></td>
+</tr>
+<tr class="even">
+<td align="left">eubirds</td>
+<td align="left">traitDatabase</td>
+<td align="left">Storchová &amp; Hořák 2017</td>
+<td align="left"><a href="https://doi.org/10.1111/geb.12709">10.1111/geb.12709</a></td>
+</tr>
+<tr class="odd">
+<td align="left">fishmorph</td>
+<td align="left">traitDatabase</td>
+<td align="left">Brosse et al. 2021</td>
+<td align="left"><a href="https://doi.org/10.1111/geb.13395">10.1111/geb.13395</a></td>
+</tr>
+<tr class="even">
+<td align="left">globalHWI</td>
+<td align="left">traitDatabase</td>
+<td align="left">Sheard et al. 2020</td>
+<td align="left"><a href="http://doi.org/10.1038/s41467-020-16313-6">10.1038/s41467-020-16313-6</a></td>
+</tr>
+<tr class="odd">
+<td align="left">globTherm</td>
+<td align="left">traitDatabase</td>
+<td align="left">Bennett et al. 2018</td>
+<td align="left"><a href="https://doi.org/10.1038/sdata.2018.22">10.1038/sdata.2018.22</a></td>
+</tr>
+<tr class="even">
+<td align="left">heteroptera</td>
+<td align="left">traitDatabase</td>
+<td align="left">Gossner et al. 2016</td>
+<td align="left"><a href="https://doi.org/10.6084/m9.figshare.c.3307611.v1">10.6084/m9.figshare.c.3307611.v1</a></td>
+</tr>
+<tr class="odd">
+<td align="left">heteropteraRaw</td>
+<td align="left">traitDatabase</td>
+<td align="left">Gossner et al. 2016</td>
+<td align="left"><a href="https://doi.org/10.6084/m9.figshare.c.3307611.v1">10.6084/m9.figshare.c.3307611.v1</a></td>
+</tr>
+<tr class="even">
+<td align="left">lizard_traits</td>
+<td align="left">traitDatabase</td>
+<td align="left">Meiri 2018</td>
+<td align="left"><a href="http://doi.org/10.1111/geb.12773">10.1111/geb.12773</a></td>
+</tr>
+<tr class="odd">
+<td align="left">mammal_diet</td>
+<td align="left">traitDatabase</td>
+<td align="left">Kissling et al. 2014</td>
+<td align="left"><a href="http://doi.org/10.1002/ece3.1136">10.1002/ece3.1136</a></td>
+</tr>
+<tr class="even">
+<td align="left">mammal_diet2</td>
+<td align="left">traitDatabase</td>
+<td align="left">Gainsbury et al. 2018</td>
+<td align="left"><a href="http://doi.org/10.1111/mam.12119">10.1111/mam.12119</a></td>
+</tr>
+<tr class="odd">
+<td align="left">marsupials</td>
+<td align="left">traitDatabase</td>
+<td align="left">Fisher et al. 2001</td>
+<td align="left"><a href="https://doi.org/10.1890/0012-9658(2001)082%5B3531:TEBOLH%5D2.0.CO;2">10.1890/0012-9658(2001)082[3531:TEBOLH]2.0.CO;2</a></td>
+</tr>
+<tr class="even">
+<td align="left">migbehav_birds</td>
+<td align="left">literatureData</td>
+<td align="left">Eyres &amp; Fritz</td>
+<td align="left"><a href="http://doi.org/10.12761/SGN.2017.10058">10.12761/SGN.2017.10058</a></td>
+</tr>
+<tr class="odd">
+<td align="left">pantheria</td>
+<td align="left">traitDatabase</td>
+<td align="left">Jones et al. 2009</td>
+<td align="left"><a href="http://doi.org/10.1890/08-1494.1">10.1890/08-1494.1</a></td>
+</tr>
+<tr class="even">
+<td align="left">passerines</td>
+<td align="left">traitDatabase</td>
+<td align="left">Ricklefs 2017</td>
+<td align="left"><a href="http://doi.org/10.1002/ecy.1783">10.1002/ecy.1783</a></td>
+</tr>
+<tr class="odd">
+<td align="left">primates</td>
+<td align="left">traitDatabase</td>
+<td align="left">Galán-Acedo et al. 2020</td>
+<td align="left"><a href="http://doi.org/10.1038/s41597-019-0059-9">10.1038/s41597-019-0059-9</a></td>
+</tr>
+<tr class="even">
+<td align="left">reptile_lifehist</td>
+<td align="left">traitDatabase</td>
+<td align="left">Grimm et al. 2014</td>
+<td align="left"><a href="http://doi.org/10.3897/natureconservation.9.8908">10.3897/natureconservation.9.8908</a></td>
+</tr>
+<tr class="odd">
+<td align="left">tetra_density</td>
+<td align="left">traitDatabase</td>
+<td align="left">Santini et al. 2018</td>
+<td align="left"><a href="https://doi.org/10.1111/geb.12756">10.1111/geb.12756</a></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>All published datasets contain their original variables and species names. Species names were split into 2 columns (Genus and Species) and where applicable into a 3rd column with Subspecies names.</li>
+<li>All datasets also have a scientificNameStd column, which is a standardised scientific name, in order to be able to merge the different datasets by species.</li>
+</ul>
+<div id="amniota" class="section level3">
+<h3>amniota</h3>
+<p>An amniote life-history database to perform comparative analyses with birds, mammals, and reptiles.</p>
+</div>
+<div id="amphi_lifehist" class="section level3">
+<h3>amphi_lifehist</h3>
+<p>A database of life-history traits of European amphibians</p>
+</div>
+<div id="amphibio" class="section level3">
+<h3>AmphiBio</h3>
+<p>A comprehensive database of natural history traits for amphibians worldwide.</p>
+</div>
+<div id="anage" class="section level3">
+<h3>AnAge</h3>
+<p>Database of Animal Ageing and Longevity</p>
+</div>
+<div id="arthropods" class="section level3">
+<h3>arthropods</h3>
+<p>Literature trait data (8 traits) of Coleoptera, Hemiptera, Orthoptera and Araneae species, that were sampled and measured in a project within the Biodiversity Exploratories which focuses on the effect of land use on arthropod community composition and related processes (e.g. species interactions such as herbivory or predation) in three regions of Germany.</p>
+</div>
+<div id="bird_behav" class="section level3">
+<h3>bird_behav</h3>
+<p>Foraging behaviour and dietary niche of birds</p>
+</div>
+<div id="carabids" class="section level3">
+<h3>carabids</h3>
+<p>Average body measures of 120 Carabid species occuring in the Netherlands.</p>
+</div>
+<div id="climber" class="section level3">
+<h3>climber</h3>
+<p>Climatic niche characteristics of European butterflies</p>
+</div>
+<div id="elton_birds" class="section level3">
+<h3>elton_birds</h3>
+<p>Species-level foraging attributes of the world’s birds from EltonTraits.</p>
+</div>
+<div id="elton_mammals" class="section level3">
+<h3>elton_mammals</h3>
+<p>Species-level foraging attributes of the world’s mammals from EltonTraits.</p>
+</div>
+<div id="eubirds" class="section level3">
+<h3>eubirds</h3>
+<p>Life-history of European birds</p>
+</div>
+<div id="heteroptera-heteropteraraw" class="section level3">
+<h3>heteroptera &amp; heteropteraRaw</h3>
+<p>Morphometric measures of Heteroptera sampled in grasslands across three regions of Germany.</p>
+</div>
+<div id="lizard_traits" class="section level3">
+<h3>lizard_traits</h3>
+<p>Traits of lizards of the world</p>
+</div>
+<div id="mammal_diet" class="section level3">
+<h3>mammal_diet</h3>
+<p>A comprehensive global dataset of diet preferences of mammals (‘MammalDIET’). Diet information was digitized from the literature and extrapolated for species with missing information. The original and extrapolated data cover species-level diet information for &gt;99 terrestrial mammals.</p>
+</div>
+<div id="mammal_diet2" class="section level3">
+<h3>mammal_diet2</h3>
+<p>Combined mammal dietary dataset from Kissling et al. (2014), MammalDIET (see above), and the updated collected dietary information for 1261 mammalian species.</p>
+</div>
+<div id="migbehav_birds" class="section level3">
+<h3>migbehav_birds</h3>
+<p>Migratory behaviour in birds: A classification across all living species</p>
+</div>
+<div id="pantheria" class="section level3">
+<h3>PanTHERIA</h3>
+<p>A global species-level data set of key life-history, ecological and geographical traits of all known extant and recently extinct mammals.</p>
+</div>
+<div id="passerines" class="section level3">
+<h3>passerines</h3>
+<p>External measurements of approximately one-quarter of passerine bird species taken from Ricklefs 2017.</p>
+<p>The data set includes eight measurements of the external morphology of 1642 species, roughly one-quarter of all passerine birds (Aves: Order Passeriformes), from all parts of the world, characterizing the relative proportions of the wing, tail, legs, and beak. Specimens were measured opportunistically over the past 40 years in museums in the United States and Europe. Numbers of individuals measured per species vary from one to dozens in some cases. Measurements for males and females of sexually size-dimorphic species are presented separately. The measurements include total length, the lengths of the wing, tail, tarsus, and middle toe, and the length, breadth, and depth of the beak. Particular attention was paid to obtaining a broad representation of passerine higher taxa, with special interest in small families and subfamilies of passerines, as well as species produced by evolutionary radiations of birds in archipelagoes, including the Galapagos, Hawaii, and the Lesser Antilles.</p>
+<p>Geographic distributions are summarized from Edwards’s Coded List of Birds of the World.</p>
+<p>North American and South American species are particularly well represented in the sample, as well as species belonging to the families Tyrannidae, Furnariidae, Thamnophilidae, Mimidae, Sturnidae, Fringillidae, Parulidae, Icteridae, Cardinalidae, and Thraupidae.</p>
+<p>The following measurement techniques, paraphrased from Ricklefs and Travis (1980) were used: (1) total length was measured with a plastic ruler from the tip of the bill to the tip of tail; (2) we measured the length of the folded wing, which was flattened along a stiff ruler, from the wrist to the tip of the longest primary; (3) length of the tail was measured from the base of the feathers in the center of the tail to the tip of the longest rectrix. We used dial calipers to measure (0.1 mm) the lengths of the (4) tarsus, (5) middle toe (to the base of the claw), and (6) culmen from the tip of the upper mandible to its kinetic hinge at the front of the skull, and the (7) depth and (8) width of the beak at the kinetic hinge.</p>
+</div>
+<div id="reptile_lifehist" class="section level3">
+<h3>reptile_lifehist</h3>
+<p>Life-history trait database of European reptile species</p>
+</div>
+<div id="tetra_density" class="section level3">
+<h3>tetra_density</h3>
+<p>Population density estimates in terrestrial vertebrates</p>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

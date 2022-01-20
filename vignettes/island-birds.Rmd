@@ -1,0 +1,155 @@
+---
+title: "Trait data availability for island birds"
+author: "RS-eco"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Trait data availability for island birds}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval=F)
+```
+
+## Calculate bird species richness (SR) for each island large than 1 ha
+
+Load island data
+
+```{r}
+# Load islands data
+data(largeislands, package="ggmap2")
+```
+
+Load bird species richness data
+
+```{r}
+# Read bird data
+data(ter_birds_dist, package="rasterSp")
+
+# Add presence column
+ter_birds_dist$presence <- 1
+
+# Calulate bird SR
+library(dplyr)
+sr_birds <- ter_birds_dist %>% group_by(x, y) %>% 
+  summarise(sum = sum(presence))
+library(ggmap2)
+ggmap2(data=sr_birds, name="SR")
+```
+
+```{r}
+# Convert bird data to a spatial object
+sp::coordinates(sr_birds) <- ~x+y
+
+# Make sure both files have the same projection
+library(sp)
+proj4string(sr_birds) <- sf::st_crs(largeislands)$proj4string
+```
+
+Extract bird SR for each island
+
+```{r}
+sr_birds <- raster::rasterFromXYZ(sr_birds)
+sr_islands <- raster::extract(sr_birds, largeislands, fun=sum, na.rm=FALSE, sp=TRUE)
+sr_islands <- sr_islands@data
+```
+
+Save data to file
+
+```{r, eval=F}
+write.csv(sr_islands, "sr_islands.csv", row.names=F)
+```
+
+Now, we can identify the 10 islands with the highest bird SR
+
+```{r}
+library(dplyr)
+arrange(sr_islands, sum) %>% head(10) %>% select(NAME_ENGLI, Island) %>% unique()
+```
+
+## Identify bird species occuring on islands
+
+```{r eval=F}
+# Convert bird data to a spatial object
+sp::coordinates(ter_birds_dist) <- ~x+y
+
+# Make sure both files have the same projection
+proj4string(ter_birds_dist) <- sf::st_crs(largeislands)$proj4string
+
+# SF approach
+
+# Turn ter_birds into sf object
+library(sf)
+ter_birds_dist <- st_as_sf(ter_birds_dist)
+island_birds <- ter_birds_dist[sf::st_within(ter_birds_dist, largeislands),]
+
+# Spatial approach
+
+# Turn large islands into an sp object
+#largeislands <- as(largeislands, "Spatial")
+
+# Extract bird names occuring on islands
+#island_birds <- sp::over(ter_birds_dist, largeislands)
+#island_birds_all <- cbind(ter_birds_dist@data, island_birds)
+#island_birds <- tidyr::drop_na(island_birds_all)
+
+# Only want to have unique names
+island_birds <- unique(island_birds$species)
+head(island_birds)
+```
+
+Save species names of birds that occur on islands to file
+
+```{r, eval=F}
+write.csv(island_birds, "island_birds.csv", row.names=F)
+```
+
+## Find island birds for which we have traits
+
+Load traitdata of birds
+
+```{r}
+library(traitdata)
+data(globTherm)
+```
+
+Standardise species names of island_birds
+
+```{r, eval=F}
+# Read island birds
+island_birds <- read.csv("island_birds.csv")
+
+# Load standardised taxonomy
+load("data/taxonomyStd.rda")
+
+# Change species column of island birds
+colnames(island_birds) <- "scientificName"
+
+# Check which species have already a standardised taxonomy
+island_birds %>% left_join(taxonomyStd)
+
+# Add standardised taxonomy of remaining species
+#island_species <- traitdata::standardize_taxonomy(island_species, 
+#                                                      return="scientificNameStd")
+```
+
+Merge island birds with globTherm
+
+```{r, eval=F}
+#Merge data
+island_birds_traits <- dplyr::full_join(island_species, globTherm, by="scientificNameStd")
+```
+
+Identify species that have certain traits
+
+```{r, eval=F}
+# number of unique species
+species_num <- length(unique(island_birds_traits$taxonomyStd))
+
+# island species with maximum thermal tolerance
+species_tmax <- length(unique(island_birds_traits$taxonomyStd[which(!is.na(island_birds_traits$Tmax))]))
+```

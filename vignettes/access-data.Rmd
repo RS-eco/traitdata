@@ -1,0 +1,168 @@
+---
+title: "How to access data from traitdata"
+author: "RS-eco"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to access data from traitdata}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+## Getting started
+
+Load the traitdata, dplyr and ggplot2 library
+
+```{r, message=FALSE}
+library(traitdata)
+library(dplyr, quiet=TRUE)
+library(ggplot2)
+```
+
+## Data query
+  
+To connect to a table within our database, we use the `data()` function.
+ 
+```{r}
+data(passerines)
+```
+
+Now we can use standard R calls to have a look at the table. 
+Here, we check the class and first 6 rows of the table:
+
+```{r}
+class(passerines)
+head(passerines)
+```  
+
+## Basic verbs
+
+Select certain columns, here: Genus, Species and Winglength
+
+```{r}
+data(passerines)
+select(passerines, Genus, Species, Wing) %>% head()
+```
+
+Only get bird species from the Auk family
+
+**Note:** Only passerines has a column named Family. elton_birds and elton_mammals also contain information on Family, but the specific column has a different name. <!-- Need to update this, according to all datasets -->
+
+```{r}
+passerines %>% select(scientificNameStd, Genus, Species, Family, Wing) %>% 
+  filter(Family == "Cardinalidae") %>% head()
+```
+
+Order the data according to certain variables, here by Family
+
+```{r}
+passerines %>% select(scientificNameStd, Genus, Species, Family, Wing) %>% 
+  arrange(Family) %>% head()
+```
+
+Summarise the number of entries (not number of species) for each family (as some species might have multiple records).
+
+```{r}
+passerines %>% select(scientificNameStd, Family, Genus, Species) %>% group_by(Family) %>% 
+summarise(n_family = n())
+```
+
+We select only male animals, extract their Bill length, width and depth and arrange the data according to bill length.
+
+```{r}
+# Get passerine data
+data(passerines)
+
+# Run queries on data
+passerines %>% filter(Sex == 1) %>% 
+  select(`Bill L`, `Bill W`, `Bill D`) %>% 
+  arrange(`Bill L`) %>% head()
+```
+
+## Grouping
+  
+This query groups all the taxa by Family, counts the number of Species per Family and 
+removes all Families that have less than 10 species.
+
+**Note:** With `n_distinct` we now get the actual number of species, not counting duplicate entries of one species.
+
+```{r}
+by_family <- group_by(passerines, Family)
+count <- summarise(by_family, n = n_distinct(scientificNameStd))
+count <- filter(count, n > 10)
+count
+``` 
+
+We can pipe dplyr operations together with %>% from the magrittr R package. 
+The pipeline %>% takes the output from the left-hand side of the pipe as the first argument 
+to the function on the right hand side.
+
+```{r}
+passerines %>% group_by(Family) %>% summarize(n=n_distinct(scientificNameStd)) %>% 
+  arrange(desc(n)) %>% head(10)
+```
+
+We can also plot this
+  
+```{r fig.width=6, fig.height=4}
+passerines %>% group_by(Family) %>% tidyr::drop_na(Family) %>% 
+  summarize(n=n_distinct(scientificNameStd)) %>% 
+  arrange(desc(n)) %>% head(15) %>% collect() %>% ggplot(aes(x=Family, y=n)) +
+  geom_bar(stat='identity',color='skyblue',fill='#b35900') + xlab("") + 
+  ggtitle('Top ten families with highest number of species') + coord_flip() + ylab('Total number of species')
+```
+
+### Wing length and kipp distance for females and males
+
+Get mean wing length, kipp distance and sample size per species and sex
+
+```{r}
+#Get passerines data
+data(passerines)
+
+#Get mean wing length and sample size per species and sex
+passerines %>% group_by(scientificNameStd, Sex) %>% filter(Sex %in% c(1,2)) %>% 
+  summarise(wing_length = mean(Wing), 
+            sample_size = n()) %>% head(5)
+```
+
+Now we want to plot a boxplot of wing length
+
+```{r fig.width=6, fig.height=4}
+passerines %>% group_by(scientificNameStd, Sex) %>% filter(Sex %in% c(1,2)) %>% 
+  head(15) %>% collect() %>% ggplot(aes(x=as.factor(`scientificNameStd`), y=Wing, fill=Sex)) + geom_boxplot() + coord_flip() + 
+  xlab("") + ylab("Wing length")
+```
+
+## Joins
+
+Let's join passerines and migbehav_birds by scientificNameStd, only retaining species for which both datasets have entries.
+
+```{r}
+migbehav_passerines <- inner_join(passerines, migbehav_birds, by="scientificNameStd", copy = TRUE) 
+```
+
+**Note:** You need to be careful when merging datasets, as some datasets have unique values for one species, 
+while other datasets have multiple records for one species. I also haven't cross-checked if data entries occur multiple times in different datasets. Please also have a look at the glossary before merging multiple datasets, as some datasets contain variables with the same names.
+
+Now, we can identify the ten bird species with the longest bill length in our dataset and check their migratory status
+
+```{r}
+migbehav_passerines %>% arrange(desc(`Bill L`)) %>% select(scientificNameStd, `Bill L`, Migratory_status) %>% unique() %>% head(10)
+```
+
+Alternatively, we might want to join datasets, which contain the same variables.
+For example, we want to get the Body mass of all species from elton_birds and elton_mammals.
+
+```{r}
+data(elton_birds); data(elton_mammals)
+eltontraits <- full_join(elton_mammals, elton_birds)
+eltontraits %>% select(scientificNameStd, BodyMass.Value) %>% 
+  arrange(desc(BodyMass.Value)) %>% head(10)
+```
+
+Now, you should be able to work with subsets or aggregates of the data that you are interested in.

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="RS-eco" />
+
+<meta name="date" content="2022-01-20" />
+
+<title>Morphological indices</title>
+
+<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Morphological indices</h1>
+<h4 class="author">RS-eco</h4>
+<h4 class="date">2022-01-20</h4>
+
+
+
+<div id="morphological-indices" class="section level2">
+<h2>Morphological indices</h2>
+<p>Morphological indices can be helpful to depict ecological differences between feeding guilds and between species differing in their preferred foraging stratum.</p>
+<p>There are 6 morphological indices, which are often calculated:</p>
+<ul>
+<li>Kipp’s index (Kipp’s distance divided by wing length),</li>
+<li>tail-wing index (the longest rectrix divided by wing length),</li>
+<li>bill height index (bill height divided by bill length),</li>
+<li>bill width index (bill width divided by bill length),</li>
+<li>lateral tarsus index (lateral tarsus diameter divided by tarsus length) and</li>
+<li>sagittal tarsus index (sagittal tarsus diameter divided by tarsus length).</li>
+</ul>
+<p>Here, we show how to calculate these indices, using the data included in this package:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; First we load our Data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(traitdata)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(passerines)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Secondly, we need to load the dplyr library</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Now, we can calculate the indices using the mutate function from the dplyr package</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>passerines <span class="ot">&lt;-</span> passerines <span class="sc">%&gt;%</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tail_wing_index =</span> Tail <span class="sc">/</span> Wing, </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">bill_height_index =</span> <span class="st">`</span><span class="at">Bill D</span><span class="st">`</span> <span class="sc">/</span> <span class="st">`</span><span class="at">Bill L</span><span class="st">`</span>, </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">bill_width_index =</span>  <span class="st">`</span><span class="at">Bill W</span><span class="st">`</span> <span class="sc">/</span> <span class="st">`</span><span class="at">Bill L</span><span class="st">`</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#kipp_index = kipp / Wing,</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#lateral_tarsus_index = lateral.tarsus.diameter / tarsus.length</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#sagittal_tarsus_index = sagittal.tarsus.diamter / tarsus.length</span></span></code></pre></div>
+<p>Now, we want to plot these indices:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Load the ggplot2 library</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2); <span class="fu">library</span>(patchwork)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Plot a histogram of the 3 indices</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> passerines <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x=</span>tail_wing_index)) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand=</span><span class="fu">expansion</span>(<span class="at">add=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>))) <span class="sc">+</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Tail wing index&quot;</span>, <span class="at">y=</span><span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> passerines <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x=</span>bill_height_index)) <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand=</span><span class="fu">expansion</span>(<span class="at">add=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>))) <span class="sc">+</span> </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Bill height index&quot;</span>, <span class="at">y=</span><span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> passerines <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x=</span>bill_width_index)) <span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand=</span><span class="fu">expansion</span>(<span class="at">add=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>))) <span class="sc">+</span> </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Bill width index&quot;</span>, <span class="at">y=</span><span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

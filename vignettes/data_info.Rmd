@@ -1,0 +1,159 @@
+---
+title: "Introduction to traitdata"
+author: "RS-eco"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to traitdata}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+## Taxonomy
+
+## Datasets
+
+There are 32 different datasets, which are currently included in this package:
+
+```{r, results="asis", echo=F}
+table <- "
+amniota | traitDatabase | Myrhvold et al. 2016 | [10.1890/15-0846R.1](http://doi.org/10.1890/15-0846R.1)
+amphi_lifehist | traitDatabase | Trochet et al. 2014 | [10.3897/BDJ.2.e4123](http://doi.org/10.3897/BDJ.2.e4123)
+amphibio | traitDatabase | Oliveira et al. 2017 | [10.1038/sdata.2017.123](http://doi.org/10.1038/sdata.2017.123)
+an_age | traitDatabase | Tacutu et al. 2018 | [10.1093/nar/gkx1042](http://doi.org/10.1093/nar/gkx1042)
+anuran_morpho | traitDatabase | Mendoza-Henao et al. 2019 | [10.1002/ecy.2685](http://doi.org/10.1002/ecy.2685)
+arthropods | traitDatabase | Gossner et al. 2015 | [10.1038/sdata.2015.13](http://doi.org/10.1038/sdata.2015.13)
+atlantic_birds | traitDatabase | Rodrigues et al. 2019 | [10.1002/ecy.2647](https://doi.org/10.1002/ecy.2647)
+australian_birds | traitDatabase | Garnett et al. 2015 | [10.1038/sdata.2015.61](https://doi.org/10.1038/sdata.2015.61)
+AvianBodySize | traitDatabase | Lislevand et al. 2007 | [10.1890/06-2054](https://doi.org/10.1890/06-2054)
+bird_behav | traitDatabase | Tobias & Pigot 2019 | [10.1098/rstb.2019.0012](http://dx.doi.org/10.1098/rstb.2019.0012)
+carabids | traitDatabase | van der Plas et al. 2017 | [10.5061/dryad.53ds2](http://doi.org/10.5061/dryad.53ds2)
+climber | traitDatabase | Schweiger et al. 2014 | [10.3897/zookeys.367.6185](http://doi.org/10.3897/zookeys.367.6185)
+disperse | traitDatabase | Sarremejane et al. 2020 | [10.1038/s41597-020-00732-7](http://doi.org/10.1038/s41597-020-00732-7)
+elton_birds	| traitDatabase	| Wilman et al. 2014 | [10.1890/13-1917.1](http://doi.org/10.1890/13-1917.1)
+elton_mammals |	 traitDatabase	| Wilman et al. 2014 | [10.1890/13-1917.1](http://doi.org/10.1890/13-1917.1)
+epiphytes | traitDatabase | Hietz et al. 2021 | [10.1111/1365-2745.13802](https://doi.org/10.1111/1365-2745.13802)
+eubirds | traitDatabase | Storchová & Hořák 2017 | [10.1111/geb.12709](https://doi.org/10.1111/geb.12709)
+fishmorph | traitDatabase | Brosse et al. 2021 | [10.1111/geb.13395](https://doi.org/10.1111/geb.13395)
+globalHWI | traitDatabase | Sheard et al. 2020 | [10.1038/s41467-020-16313-6](http://doi.org/10.1038/s41467-020-16313-6)
+globTherm | traitDatabase | Bennett et al. 2018 | [10.1038/sdata.2018.22](https://doi.org/10.1038/sdata.2018.22)
+heteroptera | traitDatabase | Gossner et al. 2016 | [10.6084/m9.figshare.c.3307611.v1](https://doi.org/10.6084/m9.figshare.c.3307611.v1)
+heteropteraRaw | traitDatabase | Gossner et al. 2016 | [10.6084/m9.figshare.c.3307611.v1](https://doi.org/10.6084/m9.figshare.c.3307611.v1)
+lizard_traits | traitDatabase | Meiri 2018 | [10.1111/geb.12773](http://doi.org/10.1111/geb.12773)
+mammal_diet | traitDatabase | Kissling et al. 2014 | [10.1002/ece3.1136](http://doi.org/10.1002/ece3.1136)
+mammal_diet2 | traitDatabase | Gainsbury et al. 2018 | [10.1111/mam.12119](http://doi.org/10.1111/mam.12119)
+marsupials | traitDatabase | Fisher et al. 2001 | [10.1890/0012-9658(2001)082[3531:TEBOLH]2.0.CO;2](https://doi.org/10.1890/0012-9658(2001)082[3531:TEBOLH]2.0.CO;2)
+migbehav_birds	| literatureData	| Eyres & Fritz	| [10.12761/SGN.2017.10058](http://doi.org/10.12761/SGN.2017.10058)
+pantheria | traitDatabase | Jones et al. 2009 | [10.1890/08-1494.1](http://doi.org/10.1890/08-1494.1)
+passerines | traitDatabase | Ricklefs 2017 | [10.1002/ecy.1783](http://doi.org/10.1002/ecy.1783)
+primates | traitDatabase | Galán-Acedo et al. 2020 | [10.1038/s41597-019-0059-9](http://doi.org/10.1038/s41597-019-0059-9)
+reptile_lifehist | traitDatabase | Grimm et al. 2014 | [10.3897/natureconservation.9.8908](http://doi.org/10.3897/natureconservation.9.8908)
+tetra_density | traitDatabase | Santini et al. 2018 | [10.1111/geb.12756](https://doi.org/10.1111/geb.12756)
+"
+df <- read.delim(textConnection(table),header=FALSE,sep="|",strip.white=TRUE,stringsAsFactors=FALSE)
+names(df) <- unname(as.list(df[1,])) # put headers on
+df <- df[-1,] # remove first row
+row.names(df)<-NULL
+knitr::kable(df, style="rmarkdown")
+```
+
+* All published datasets contain their original variables and species names. Species names were split into 2 columns (Genus and Species) and where applicable into a 3rd column with Subspecies names.
+* All datasets also have a scientificNameStd column, which is a standardised scientific name, in order to be able to merge the different datasets by species.
+
+### amniota
+
+An amniote life-history database to perform comparative analyses with birds, mammals, and reptiles. 
+
+### amphi_lifehist
+
+A database of life-history traits of European amphibians
+
+### AmphiBio
+
+A comprehensive database of natural history traits for amphibians worldwide.
+
+### AnAge
+
+Database of Animal Ageing and Longevity
+
+### arthropods
+
+Literature trait data (8 traits) of Coleoptera, Hemiptera, Orthoptera and Araneae species, that were sampled and measured in a project within the Biodiversity Exploratories which focuses on the effect of land use on arthropod community composition and related processes (e.g. species interactions such as herbivory or predation) in three regions of Germany.
+
+### bird_behav
+
+Foraging behaviour and dietary niche of birds
+
+### carabids
+
+Average body measures of 120 Carabid species occuring in the Netherlands.
+
+### climber
+
+Climatic niche characteristics of European butterflies
+
+### elton_birds
+
+Species-level foraging attributes of the world's birds from EltonTraits.
+
+### elton_mammals
+
+Species-level foraging attributes of the world's mammals from EltonTraits.
+
+### eubirds
+
+Life-history of European birds
+
+### heteroptera & heteropteraRaw
+
+Morphometric measures of Heteroptera sampled in grasslands across three regions of Germany.
+
+### lizard_traits
+
+Traits of lizards of the world
+
+### mammal_diet
+
+A comprehensive global dataset of diet preferences of mammals (‘MammalDIET’). Diet information was digitized from the literature and extrapolated for species with missing information. The original and extrapolated data cover species-level diet information for >99 terrestrial mammals.
+
+### mammal_diet2
+
+Combined mammal dietary dataset from Kissling et al. (2014), MammalDIET (see above), and the updated collected dietary information for 1261 mammalian species.
+
+### migbehav_birds
+
+Migratory behaviour in birds: A classification across all living species
+
+### PanTHERIA
+
+A global species-level data set of key life-history, ecological and geographical traits of all known extant and recently extinct mammals.
+
+### passerines
+
+External measurements of approximately one-quarter of passerine bird species taken from Ricklefs 2017.
+
+The data set includes eight measurements of the external morphology of 1642 species,
+roughly one-quarter of all passerine birds (Aves: Order Passeriformes), from all parts of the
+world, characterizing the relative proportions of the wing, tail, legs, and beak. Specimens were measured opportunistically over the past 40 years in museums in the United States and Europe. Numbers of individuals measured per species vary from one to dozens in some cases.
+Measurements for males and females of sexually size-dimorphic species are presented separately.
+The measurements include total length, the lengths of the wing, tail, tarsus, and middle toe,
+and the length, breadth, and depth of the beak. Particular attention was paid to obtaining a
+broad representation of passerine higher taxa, with special interest in small families and subfamilies of passerines, as well as species produced by evolutionary radiations of birds in archipelagoes, including the Galapagos, Hawaii, and the Lesser Antilles.
+
+Geographic distributions are summarized from Edwards’s Coded List of Birds of the World.
+
+North American and South American species are particularly well represented in the sample, as well as species belonging to the families  Tyrannidae, Furnariidae, Thamnophilidae, Mimidae, Sturnidae, Fringillidae, Parulidae, Icteridae, Cardinalidae, and Thraupidae.
+
+The following measurement techniques, paraphrased from Ricklefs and Travis (1980) were used: (1) total length was measured with a plastic ruler from the tip of the bill to the tip of tail; (2) we measured the length of the folded wing, which was flattened along a stiff ruler, from the wrist to the tip of the longest primary; (3) length of the tail was measured from the base of the feathers in the center of the tail to the tip of the longest rectrix. We used dial calipers to measure (0.1 mm) the lengths of the (4) tarsus, (5) middle toe (to the base of the claw), and (6) culmen from the tip of the upper mandible to its kinetic hinge at the front of the skull, and the (7) depth and (8) width of the beak at the kinetic hinge.
+
+### reptile_lifehist
+
+Life-history trait database of European reptile species
+
+### tetra_density
+
+Population density estimates in terrestrial vertebrates

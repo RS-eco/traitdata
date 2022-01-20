@@ -1,0 +1,22 @@
+---
+title: "Glossary"
+author: "RS-eco"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Glossary}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+Here, I just want to give you an overview over the glossary of the data included in the traitdata package:
+
+```{r}
+library(traitdata)
+data(trait_glossary)
+knitr::kable(x=data.frame(trait_glossary))
+```
