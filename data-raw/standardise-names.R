@@ -15,16 +15,15 @@ datafiles <- list.files("data", pattern=".rda", full.names=T)
 datafiles <- datafiles[!datafiles %in% c("data/taxonomyStd.rda", "data/synonyms.rda", 
                                          "data/trait_glossary.rda", "data/names_nonStd.rda")]
 length(datafiles)
-data <- lapply(datafiles, FUN=function(x) get(load(x)))
+data <- lapply(datafiles, FUN=function(x) get(load(x))); gc()
 
 #' Subspecies names, are not considered for name matching
 
 #' Merge data files and create species name vector
 library(dplyr)
 data <- lapply(data, FUN=function(x) select(x, "Genus", "Species"))
-data_names <- Reduce(function(x,y) full_join(x,y, by=c("Genus", "Species")), data); rm(data)
-library(magrittr)
-data_names %<>% unique() %>%
+data_names <- bind_rows(data) %>% group_by(Genus, Species) %>%
+  summarise(n=n()) %>% select(-n) %>%
   tidyr::unite(Genus, Species, col="scientificName", sep=" ", remove=F)
 
 # Remove subspecies
@@ -36,7 +35,7 @@ data_names$scientificName[data_names$scientificName == "Acrocephalus familiaris 
 load("data/synonyms.rda")
 colnames(synonyms) <- c("Genus", "Species", "scientificName")
 data_names <- anti_join(data_names, synonyms, by=c("Genus", "Species")) %>%
-  bind_rows(synonyms)
+  bind_rows(synonyms); gc()
 
 # Get standardised species names
 source("R/get_taxonomy.R")

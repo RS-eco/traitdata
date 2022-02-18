@@ -9,8 +9,8 @@ A \code{data.frame} with 3802 observations and 46 variables.
 }
 \source{
 When using this data, please cite the original publication:
-\itemize{\item  Lislevand et al. 2007 AVIAN BODY SIZES IN RELATION TO FECUNDITY, 
-MATING SYSTEM, DISPLAY BEHAVIOR, AND RESOURCE SHARING Ecology.}.
+\itemize{\item  Lislevand et al. 2007 (Ecology) AVIAN BODY SIZES IN RELATION TO FECUNDITY, 
+MATING SYSTEM, DISPLAY BEHAVIOR, AND RESOURCE SHARINGe.}.
 }
 \usage{
 data(AvianBodySize)

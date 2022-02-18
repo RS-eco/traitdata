@@ -247,8 +247,30 @@ NULL
 #' have been measured, and explanatory data ranging from 1218 species (minimum, display agility) 
 #' to 2603 species (maximum, egg mass). In total, 3769 species from 125 of 146 different bird families are included.
 #' @source When using this data, please cite the original publication:
-#' \itemize{\item  Lislevand et al. 2007 AVIAN BODY SIZES IN RELATION TO FECUNDITY, 
-#' MATING SYSTEM, DISPLAY BEHAVIOR, AND RESOURCE SHARING Ecology.}.
+#' \itemize{\item  Lislevand et al. 2007 (Ecology) AVIAN BODY SIZES IN RELATION TO FECUNDITY, 
+#' MATING SYSTEM, DISPLAY BEHAVIOR, AND RESOURCE SHARINGe.}.
+#'   
+NULL
+#'
+#'@docType data
+#' @name avonet
+#' @title Morphological, ecological and geographical data for all birds
+#' @description Morphological, ecological and geographical data for all birds
+#' @usage data(avonet)
+#' @format A \code{data.frame} with 90371 observations and 24 variables.
+#' @details The AVONET database contains comprehensive functional trait data for all birds, 
+#' including six ecological variables, eleven continuous morphological traits, 
+#' and information on range size and location. Raw morphological measurements 
+#' are available from 90020 individuals of 11009 extant bird species sampled 
+#' from 181 countries. These data are also summarised as species averages in 
+#' three taxonomic formats, allowing integration with a global phylogeny, 
+#' geographical range maps, IUCN Red List data, and the eBird citizen science 
+#' database. Code to reproduce the analyses and figures presented in 
+#' Tobias et al 2021 "AVONET: morphological, ecological and geographical 
+#' data for all birds" Ecology Letters, is also included.
+#' @source When using this data, please cite the original publication:
+#' \itemize{\item Tobias et al. 2021 (Ecology Letters) 
+#' AVONET: morphological, ecological and geographical data for all birds.}.
 #'   
 NULL
 #'

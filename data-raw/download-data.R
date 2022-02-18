@@ -847,3 +847,34 @@ print({
            \n When using this data, please cite the original publication: \n") 
   (attributes(epiphytes)$citeAs)
 })
+
+# -------------------------------------------------------------------
+
+# Avonet bird traits
+temp <- tempfile(fileext = ".zip")
+download.file("https://figshare.com/ndownloader/files/30833695", 
+              temp, method = "auto", quiet = TRUE, mode="wb")
+unzip(temp, exdir = ".")
+avonet <- read.csv("ELEData/TraitData/AVONET_Raw_Data.csv") %>%
+  select(Avibase.ID:Publication) %>%
+  tidyr::separate(Species1_BirdLife, into=c("Genus", "Species"), 
+                  sep=" ", extra="drop")
+avonet$Specimen.number <- stringi::stri_trans_general(avonet$Specimen.number, "latin-ascii")
+attr(avonet, 'citeAs') <- utils::bibentry(
+  bibtype = "Article",
+  title = "AVONET: morphological, ecological and geographical data for all birds",
+  journal = "Ecology Letters",
+  volume = 00,
+  author = c(utils::person(given = "Joseph", 
+                           family = "Tobias")
+  ),
+  year = 2021,
+  doi = "10.6084/m9.figshare.16586228.v2"
+)
+save(avonet, file="data/avonet.rda", compress="xz")
+print({
+  cat("loading dataset 'avonet' from original data source! 
+           \n When using this data, please cite the original publication: \n") 
+  (attributes(avonet)$citeAs)
+})
+´

@@ -40,6 +40,8 @@ arthropods | traitDatabase | Gossner et al. 2015 | [10.1038/sdata.2015.13](http:
 atlantic_birds | traitDatabase | Rodrigues et al. 2019 | [10.1002/ecy.2647](https://doi.org/10.1002/ecy.2647)
 australian_birds | traitDatabase | Garnett et al. 2015 | [10.1038/sdata.2015.61](https://doi.org/10.1038/sdata.2015.61)
 AvianBodySize | traitDatabase | Lislevand et al. 2007 | [10.1890/06-2054](https://doi.org/10.1890/06-2054)
+AVONET | traitDatabase | Tobias et al. 2021 | 
+[10.6084/m9.figshare.16586228.v2](https://doi.org/10.6084/m9.figshare.16586228.v2)
 bird_behav | traitDatabase | Tobias & Pigot 2019 | [10.1098/rstb.2019.0012](http://dx.doi.org/10.1098/rstb.2019.0012)
 carabids | traitDatabase | van der Plas et al. 2017 | [10.5061/dryad.53ds2](http://doi.org/10.5061/dryad.53ds2)
 climber | traitDatabase | Schweiger et al. 2014 | [10.3897/zookeys.367.6185](http://doi.org/10.3897/zookeys.367.6185)
