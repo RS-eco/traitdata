@@ -1,4 +1,4 @@
-traitdata: Easy access to various ecological trait data
+traitdata: R package for easy access to various ecological trait data
 ================
 
 ## Installation
