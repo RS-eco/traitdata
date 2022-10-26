@@ -1,5 +1,5 @@
 ---
-title: "traitdata: Easy access to various ecological trait data"
+title: "traitdata: R package for easy access to various ecological trait data"
 output: github_document
 editor_options: 
   chunk_output_type: console
